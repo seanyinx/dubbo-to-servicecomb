@@ -20,19 +20,19 @@ Dubbo
 
 Java chassis
 ```xml
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.servicecomb</groupId>
-				<artifactId>java-chassis-dependencies</artifactId>
-				<version>${java.chassis.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	
-	<dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.servicecomb</groupId>
+        <artifactId>java-chassis-dependencies</artifactId>
+        <version>${java.chassis.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
+  <dependencies>
     <dependency>
       <groupId>io.servicecomb</groupId>
       <artifactId>transport-highway</artifactId>
@@ -76,15 +76,15 @@ Dubbo
 public class ProviderMain
 {
 
-	public static void main(String[] args) throws Exception
-	{
-		@SuppressWarnings(
-		{ "resource", "unused" })
-		ApplicationContext context = new ClassPathXmlApplicationContext("conf/applicationContext.xml");
-		System.out.println("Dubbo provider started successfully...");
+  public static void main(String[] args) throws Exception
+  {
+    @SuppressWarnings(
+    { "resource", "unused" })
+    ApplicationContext context = new ClassPathXmlApplicationContext("conf/applicationContext.xml");
+    System.out.println("Dubbo provider started successfully...");
 
-		System.in.read();
-	}
+    System.in.read();
+  }
 }
 ```
 
@@ -93,13 +93,13 @@ Java chassis
 public class ProviderMain
 {
 
-	public static void main(String[] args) throws Exception
-	{
-		Log4jUtils.init();
-		BeanUtils.init();
+  public static void main(String[] args) throws Exception
+  {
+    Log4jUtils.init();
+    BeanUtils.init();
 
-		System.out.println("ServiceComb provider started successfully...");
-	}
+    System.out.println("ServiceComb provider started successfully...");
+  }
 }
 ```
 
@@ -109,21 +109,21 @@ Dubbo服务通过一个XML文件同时配置了服务接口、服务注册中心
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<dubbo:application name="provider-service" />
+  <dubbo:application name="provider-service" />
 
-	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
+  <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
 
-	<dubbo:protocol name="dubbo" port="20880" />
+  <dubbo:protocol name="dubbo" port="20880" />
 
-	<dubbo:annotation package="io.servicecomb.demo" />
+  <dubbo:annotation package="io.servicecomb.demo" />
 
   <!-- 以XML配置方式暴露的服务 -->
-	<dubbo:service interface="io.servicecomb.demo.api.AnotherService" ref="anotherServiceImpl" />
-	<bean id="anotherServiceImpl" class="io.servicecomb.demo.provider.AnotherServiceImpl" />
+  <dubbo:service interface="io.servicecomb.demo.api.AnotherService" ref="anotherServiceImpl" />
+  <bean id="anotherServiceImpl" class="io.servicecomb.demo.provider.AnotherServiceImpl" />
 
 </beans>
 ```
@@ -132,16 +132,16 @@ Java chassis也同样提供了以XML文件暴露服务接口的方式，但其�
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:util="http://www.springframework.org/schema/util" xmlns:cse="http://www.huawei.com/schema/paas/cse/rpc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.huawei.com/schema/paas/cse/rpc classpath:META-INF/spring/spring-paas-cse-rpc.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:util="http://www.springframework.org/schema/util" xmlns:cse="http://www.huawei.com/schema/paas/cse/rpc"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.huawei.com/schema/paas/cse/rpc classpath:META-INF/spring/spring-paas-cse-rpc.xsd">
 
   <!-- 以XML配置方式暴露的服务 -->
-	<cse:rpc-schema schema-id="anotherServiceEndpoint" implementation="io.servicecomb.demo.provider.AnotherServiceImpl"/>
+  <cse:rpc-schema schema-id="anotherServiceEndpoint" implementation="io.servicecomb.demo.provider.AnotherServiceImpl"/>
 </beans>
 ```
 
@@ -173,19 +173,19 @@ Dubbo
 
 Java chassis
 ```xml
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.servicecomb</groupId>
-				<artifactId>java-chassis-dependencies</artifactId>
-				<version>${java.chassis.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	
-	<dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.servicecomb</groupId>
+        <artifactId>java-chassis-dependencies</artifactId>
+        <version>${java.chassis.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
+  <dependencies>
     <dependency>
       <groupId>io.servicecomb</groupId>
       <artifactId>transport-highway</artifactId>
@@ -207,15 +207,15 @@ Dubbo
 public class ConsumerMain
 {
 
-	public static void main(String[] args) throws Exception
-	{
-		@SuppressWarnings(
-		{ "resource", "unused" })
-		ApplicationContext context = new ClassPathXmlApplicationContext("conf/applicationContext.xml");
-		System.out.println("Dubbo Consumer started successfully...");
+  public static void main(String[] args) throws Exception
+  {
+    @SuppressWarnings(
+    { "resource", "unused" })
+    ApplicationContext context = new ClassPathXmlApplicationContext("conf/applicationContext.xml");
+    System.out.println("Dubbo Consumer started successfully...");
 
-		System.in.read();
-	}
+    System.in.read();
+  }
 }
 ```
 
@@ -224,13 +224,13 @@ Java chassis
 public class ConsumerMain
 {
 
-	public static void main(String[] args) throws Exception
-	{
-		Log4jUtils.init();
-		BeanUtils.init();
+  public static void main(String[] args) throws Exception
+  {
+    Log4jUtils.init();
+    BeanUtils.init();
 
-		System.out.println("ServiceComb Consumer started successfully...");
-	}
+    System.out.println("ServiceComb Consumer started successfully...");
+  }
 }
 ```
 
@@ -257,22 +257,22 @@ Dubbo服务通过一个XML文件同时配置了远程服务提供方接口、服
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-	<dubbo:application name="consumer-service" />
+  <dubbo:application name="consumer-service" />
 
-	<dubbo:protocol name="dubbo" port="20880"/>
-	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
+  <dubbo:protocol name="dubbo" port="20880"/>
+  <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
 
-	<dubbo:reference id="someServiceRef"
-		interface="io.servicecomb.demo.api.SomeService"
-		async="true" timeout="30000" />
+  <dubbo:reference id="someServiceRef"
+    interface="io.servicecomb.demo.api.SomeService"
+    async="true" timeout="30000" />
 
-	<dubbo:reference id="anotherServiceRef"
-		interface="io.servicecomb.demo.api.AnotherService"
-		async="true" timeout="30000" />
+  <dubbo:reference id="anotherServiceRef"
+    interface="io.servicecomb.demo.api.AnotherService"
+    async="true" timeout="30000" />
 </beans>
 ```
 
@@ -284,9 +284,9 @@ Java chassis也同样提供了以XML文件引用远程服务提供方接口的�
   xmlns:util="http://www.springframework.org/schema/util" xmlns:cse="http://www.huawei.com/schema/paas/cse/rpc"
   xmlns:context="http://www.springframework.org/schema/context"
   xsi:schemaLocation="
-		http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.huawei.com/schema/paas/cse/rpc classpath:META-INF/spring/spring-paas-cse-rpc.xsd">
+    http://www.springframework.org/schema/beans classpath:org/springframework/beans/factory/xml/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.huawei.com/schema/paas/cse/rpc classpath:META-INF/spring/spring-paas-cse-rpc.xsd">
 
 
   <cse:rpc-reference id="someServiceRef" microservice-name="service-provider"
