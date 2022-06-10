@@ -18,7 +18,7 @@
   </modules>
 
   <properties>
-    <dubbo.version>2.6.9</dubbo.version>
+    <dubbo.version>2.6.12</dubbo.version>
   </properties>
 
   <dependencyManagement>
